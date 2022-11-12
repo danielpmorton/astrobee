@@ -2,7 +2,7 @@ Simulation notes 11/10
 
 When starting the simulation with their default command
 `roslaunch astrobee sim.launch dds:=false robot:=sim_pub rviz:=true`
-(after sourcing devel/setup.bash in the shell)
+(after running `source devel/setup.bash` in the shell)
 we run into:
 ```
 log file: /home/dan/.ros/log/f5638fce-6193-11ed-b32e-94c691a89e82/spawn_astrobee-6*.log
@@ -70,6 +70,37 @@ rosrun executive teleop_tool -move -relative -pos "1 2 0.5"
 
 These were all successful!
 
+
+Notes 11/11
+
+Running the simulator with Gazebo active (setting the flag `sviz:=true` when executing the main launch command) appears to work well. The world in Gazebo seems to be upside-down, but this is not a significant issue
+
+`gds:=true` failed, because the Ground Data System is not set up. I've cloned the repo but if we want to use this, **we'll need to get the RTI libraries / communication nodes from our Astrobee point of contact**. They do recommend this as the preferred means of teleoperating the robot
+
+Starting the gnc visualizer: Can either use `gviz:=true` when launching the program, or separately run `python src/tools/gnc_visualizer/scripts/visualizer.py  --comm ros` 
+Note that the gnc visualizer crashed a few times
+
+
+All flags from the Running the Sim page. If not specified, enable with `flag:=true`
+- pose: Starting pose. ex) `pose:="x y z qx qy qz qw"`
+- gds: Starts the Ground Data System
+- rviz: Starts RVIZ
+- sviz: Starts Gazebo
+- gviz: Starts the GNC visualizer
+- dds: Starts communication nodes
+- speed: Simulation speed multiplier (1 = real time)
+- ns: Namespace (for using multiple robots)
+- robot: Which robot config file to use (leave this as sim_pub for now)
+- default_robot: If you want to launch the world without a robot, set this `false`
+- perch: Starts astrobee in a perch-ready position
+- world: "iss" (default) or "granite"
+- debug: node name to debug, ex) `"executive"`
+
+I've spent a while trying to figure out how they're loading their configs into ROS/Rviz/Gazebo but having a tough time. 
+It seems the `simulation.config` file is used to enable the images from the `nav_cam` and `dock_cam`, and you can change these values in the config fairly easily, but figuring out how ROS actually reads and responds to these changes is confusing
+- Understanding this will be helpful for figuring out if we can write our own configs in the future with different physics models
+- Config files appear to be in Lua format
+- Look into the ConfigReader class and where this is used
 
 Reference links:
 https://nasa.github.io/astrobee/html/running-the-sim.html
