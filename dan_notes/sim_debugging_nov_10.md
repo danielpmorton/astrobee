@@ -102,6 +102,30 @@ It seems the `simulation.config` file is used to enable the images from the `nav
 - Config files appear to be in Lua format
 - Look into the ConfigReader class and where this is used
 
+
+Notes 11/16
+
+To fix all of the include issues in vscode, it looks like we need to update the "Include path" in the C/C++ vscode settings
+Most of the include issues come from Ros, Lua, Gazebo, opencv2, .... , so we need to figure out where ros/ros.h and the other .h files are
+The final version of the include path is:
+```
+${workspaceFolder}/**
+/opt/ros/kinetic/include/**
+/usr/include/**
+```
+- I went with recursively including the entire usr/include folder because there were too many separate packages in here that all would need to be included
+
+Environment variables
+export ASTROBEE_WS=$HOME/astrobee
+TODO add the other ones. Where were these located again??
+
+Figuring out where the messages are was a pain. It seems like I was able to find the python implementation of the ff_messages here `/home/dan/astrobee/devel/lib/python2.7/dist-packages/ff_msgs/msg` but vscode is still giving me some issues with the cpp inclusions of these messages. I'm not sure where this is actually located, so idk how to add it to the include path
+
+The astrobee_ros_demo (located at `~/experimenting/catkin_ws/src/astrobee_ros_demo`) is pretty good for showing how to get things launched with messages in both python and cpp - note that the `collision_radius` parameter doesn't work any more in the python file, so it got removed
+
+**still need to figure out how config files are loaded**
+
+
 Reference links:
 https://nasa.github.io/astrobee/html/running-the-sim.html
 https://nasa.github.io/astrobee/html/sim-issues.html
