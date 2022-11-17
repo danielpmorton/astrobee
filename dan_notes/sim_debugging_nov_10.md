@@ -143,3 +143,19 @@ https://nasa.github.io/astrobee/html/managing_debians.html
 https://nasa.github.io/astrobee/html/adding_a_command.html
 https://nasa.github.io/astrobee/html/using_telemetry.html
 https://nasa.github.io/astrobee/html/maintaining_telemetry.html
+
+Gazebo/ROS/Bullet links:
+TODO: sort these
+https://classic.gazebosim.org/tutorials?tut=components&cat=get_started
+https://classic.gazebosim.org/tutorials?tut=architecture&cat=get_started
+https://classic.gazebosim.org/tutorials?tut=ros_overview&cat=connect_ros
+https://classic.gazebosim.org/tutorials?tut=ros_plugins&cat=connect_ros
+https://classic.gazebosim.org/tutorials?tut=ros_installing&cat=connect_ros
+https://classic.gazebosim.org/tutorials?tut=preset_manager&cat=physics
+https://classic.gazebosim.org/tutorials?tut=ros_advanced&cat=connect_ros
+https://classic.gazebosim.org/blog/four_physics
+https://gazebosim.org/libs/physics
+http://wiki.ros.org/ROS/Tutorials/Roslaunch%20tips%20for%20larger%20projects
+https://boschresearch.github.io/pcg_gazebo_pkgs/tutorials/simulation/physics_engines/
+https://pybullet.org/wordpress/
+http://wiki.ros.org/bullet
