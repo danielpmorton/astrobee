@@ -17,9 +17,11 @@ When building this, it didn't run into the same issues with libopencv and other 
 
 # Docker #
 
-Since a lot of these issues seemed to be related to packages and dependencies, I figured I'd give the Docker method a shot. Installing Docker went smoothly, and the `docker/run.sh` script actually seemed to work 😀. Note: the full syntax for this command is `./run.sh --remote --args "rviz:=true sviz:=true"`
+Since a lot of these issues seemed to be related to packages and dependencies, I figured I'd give the Docker method a shot. Installing Docker went smoothly, and the `docker/run.sh` script actually seemed to work 😀. Note: the full syntax for this command is `./run.sh --remote --args "rviz:=true sviz:=true"`. Gazebo and Rviz seemed to run fine, perhaps slightly slower, but not too much so. 
 
-I also tried out the `./build.sh` file to locally build it with Docker, but this also failed multiple times (I was really hoping this would work 😥). Usually, what would happen is it would get to ~90/95 built, and then fail at `graph_localizer`. However, we probably don't need to worry about this too much if we can get the simulator/visualizer running without the full build process. 
+Note: This command only works when you're on the `develop` branch. On `master`, it terminates and gives the following response: `Error response from daemon: could not select device driver "" with capabilities: [[gpu]].`
+
+I also tried out the `./build.sh` file to locally build it with Docker, but this also failed multiple times (I was really hoping this would work 😥). Usually, what would happen is it would get to ~90/95 built, and then fail at `graph_localizer`. However, we probably don't need to worry about this too much if we can get the simulator/visualizer running without the full build process. An example of the output is in the `ubuntu_20_docker_terminal_output.txt file`
 
 Note that Docker Engine doesn't work for Ubuntu 16 (but this isn't really a big deal because the local build worked on the computer with 16)
 
